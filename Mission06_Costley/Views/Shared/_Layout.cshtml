@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>The Joel Hilton Film Collection</title>
+    <!-- Include any necessary CSS stylesheets -->
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Home" asp-action="GetToKnowJoel">Get to Know Joel</a></li>
+            <li><a asp-controller="Home" asp-action="AddMovie">AddMovie</a></li>
+            <!-- Add the link to Get to Know Joel page in the navigation bar -->
+        </ul>
+    </nav>
+
+    @RenderBody()
+
+    <!-- Include any necessary JavaScript files -->
+</body>
+</html>
