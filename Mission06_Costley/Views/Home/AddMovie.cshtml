@@ -1,14 +1,23 @@
 ﻿@model Mission06_Costley.Models.Movie
 
-<form asp-action="AddMovie" method="post">
-    <div>
+<form method="post">
+    @* asp-action="AddMovie" *@
+    @* <div>
         <label>Index:</label>
-        <input type="number" asp-for="Id" disabled /> <!-- Disable input for index -->
-    </div>
+        <input type="number" asp-for="MovieId" disabled /> <!-- Disable input for index -->
+    </div> *@
 
     <div>
-        <label>Category:</label>
-        <input asp-for="Category" />
+        @* <label>Category:</label>
+        <input asp-for="Category" /> *@
+        <input type="hidden" asp-for="MovieId" />
+        <select asp-for="CategoryId">
+            <option value="">Select a Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
     </div>
 
     <div>
@@ -18,7 +27,7 @@
 
     <div>
         <label>Year:</label>
-        <input type="number" asp-for="ReleaseYear" />
+        <input type="number" asp-for="Year" />
     </div>
 
     <div>

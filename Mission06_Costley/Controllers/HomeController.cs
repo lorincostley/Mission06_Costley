@@ -26,6 +26,11 @@ namespace Mission06_Costley.Controllers
         [HttpGet]
         public IActionResult AddMovie()
         {
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+
             return View();
         }
 
@@ -40,6 +45,62 @@ namespace Mission06_Costley.Controllers
             
         }
 
+        public IActionResult WaitList()
+        {
+            //var movieList = _context.Movies
+            //    .Include(m => m.CategoryName) // Include the CategoryName navigation property
+            //    .ToList()
+            //    .OrderBy(x => x.Title)
+            //    .ToList();
+
+            //return View(movieList);
+            var movieList = _context.Movies.Include("CategoryName").ToList()
+                  .OrderBy(x => x.Title).ToList();
+
+            return View(movieList);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+
+            var recordToEdit = _context.Movies
+                .Single(x => x.MovieId == id);
+
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View("AddMovie", recordToEdit);
+        }
+
+        [HttpPost]
+
+        public IActionResult Edit(Movie updatedInfo) 
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("WaitList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _context.Movies
+                .Single(x => x.MovieId == id);
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Movie movie)
+        {
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
+
+            return RedirectToAction("WaitList");
+        }
     }
 
 }
