@@ -36,6 +36,13 @@ namespace Mission06_Costley.Controllers
         [HttpPost]
         public IActionResult AddMovie(Movie movie)
         {
+
+            //// Retrieve the selected category from the database based on the CategoryId
+            //var selectedCategory = _context.Categories.FirstOrDefault(c => c.CategoryId == movie.CategoryId);
+
+            //// Set the CategoryName property of the Movie object
+            //movie.CategoryName = selectedCategory;
+
             if (ModelState.IsValid)
             {
                 _context.Movies.Add(movie);
