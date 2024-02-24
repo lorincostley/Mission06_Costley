@@ -7,7 +7,7 @@ namespace Mission06_Costley.Models
     {
         public int CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Category Name is required.")]
+        //[Required(ErrorMessage = "Category Name is required.")]
         public string CategoryName { get; set; }
     }
 }
