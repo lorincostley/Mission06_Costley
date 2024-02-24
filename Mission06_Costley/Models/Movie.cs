@@ -19,6 +19,7 @@ namespace Mission06_Costley.Models
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Year is required.")]
+        [Range(1888, int.MaxValue, ErrorMessage = "Year must be greater than or equal to 1888.")]
         public int Year { get; set; }
 
         //[Required(ErrorMessage = "Director is required.")]

@@ -30,19 +30,27 @@ namespace Mission06_Costley.Controllers
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-
-            return View();
+            return View(new Movie());
         }
 
         [HttpPost]
         public IActionResult AddMovie(Movie movie)
         {
-           
-            _context.Movies.Add(movie);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
 
-            return View("Confirmation", movie);
-            
+                return View("Confirmation", movie);
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories
+                    .OrderBy(x => x.CategoryName)
+                    .ToList();
+
+                return View(movie);
+            }
         }
 
         public IActionResult WaitList()
