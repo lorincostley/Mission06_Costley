@@ -9,11 +9,11 @@ namespace Mission06_Costley.Models
         [Required(ErrorMessage = "MovieID is required.")]
         public int MovieId { get; set; }
 
-        [Required(ErrorMessage = "CategoryID is required.")]
+        //[Required(ErrorMessage = "CategoryID is required.")]
 
         [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
-        public Category CategoryName { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? CategoryName { get; set; }
 
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
